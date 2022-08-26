@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>NASA Pic of the Day</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <!-- MDB -->
+    <link rel="stylesheet" href="css/mdb.min.css" />
+
+    <!-- flatpickr-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+  </head>
+  <body>
+    <!-- Start your project here-->
+    <div class="container my-5">
+      <h1 style="text-align:center;">Select a Date to see NASA's picture of the day!</h1>
+      
+      <div id="date-picker" class="datepicker mb-4">
+        <form>
+          <input id="wrapper-date-input" class="form-control" type="date" placeholder="Select Date">
+        </form>
+        
+
+      </div>
+      <div class="row">
+
+        <!-- column for the image -->
+        <div class="col-md-8 mb-4 mb-md-0">
+
+          <section id="wrapper-media" class=""></section>
+
+
+        </div>
+
+        <!-- column for the copyright, name, explanation -->
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h5 class="font-weight-bold" id="wrapper-title"></h5>
+          <p class="mb-2 text-muted">
+            <span id="wrapper-copyright"></span>
+          </p>
+          <p id="wrapper-explanation"></p>
+        </div>
+
+      </div>
+    </div>
+    <!-- End your project here-->
+
+
+
+    <!-- MDB -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- Custom scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    
+
+    <script type="text/javascript">
+      config = {
+        maxDate: "today",
+        onChange: function(selectedDates, dateStr,) {
+          nasaPicForDate(dateStr);
+        }
+      }
+      calendar = flatpickr("input[type=date]", config);
+
+      function nasaPicForDate(dateStr) {
+        
+        //XML request object
+        let xmlhttp = new XMLHttpRequest();
+
+        //specify function to be executed everytime http request changes
+        xmlhttp.onreadystatechange = function () {
+          //if we have response from server, we can execute function (4 and 200 means everything works as expected)
+          if (this.readyState == 4 && this.status == 200) {
+            let data = JSON.parse(this.responseText);
+
+            let copyright = data["copyright"];
+            let date = data["date"]
+            let explanation = data["explanation"];
+            let hdurl = data["hdurl"];
+            let media_type = data["media_type"];
+            let title = data["title"];
+            let url = data["url"];
+            
+            document.getElementById("wrapper-title").innerHTML = title;
+            document.getElementById("wrapper-copyright").innerHTML = "Copyright: " + copyright;
+            document.getElementById("wrapper-explanation").innerHTML = explanation;
+            
+            //image type for image with hover effect and link to HD resolution
+            let imageType = `
+              <div
+                class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                data-mdb-ripple-color="light"
+              >
+                <img id="wrapper-image" src="" class="w-100" alt="APOD" />
+                <a id="wrapper-hdurl" href="#!" target="_blank">
+                  <div 
+                    class="mask" style="background-color: rgba(251, 251, 251, 0.2)">
+                  </div>
+                </a>
+              </div>
+            `;
+
+            let videoType = `
+              <div class="ratio ratio-16x9">
+                <iframe
+                  id="wrapper-video"
+                  src=""
+                  title="YouTube video"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            `;
+
+            //if statement that changes the wrapper depending on if media is image or video
+            if (media_type === "video") {
+              document.getElementById("wrapper-media").innerHTML = videoType;
+              document.getElementById("wrapper-video").src = url;
+            }
+            //else: if it's an image
+            else {
+              document.getElementById("wrapper-media").innerHTML = imageType;
+              document.getElementById("wrapper-image").src = url;
+              document.getElementById("wrapper-hdurl").href = hdurl;
+            }
+          }
+        }
+
+        let queryUrl = "https://api.nasa.gov/planetary/apod?";
+        let queryKey = "api_key=ke5dLV9YWjyuRKLc6OLTWxQYtnXaUHg25gS2L58s&";
+
+        let queryDate = "";
+        queryDate = "date=" + dateStr;
+
+        let query = queryUrl + queryKey + queryDate;
+
+        xmlhttp.open("GET", query, true);
+        xmlhttp.send();
+      }
+
+
+    </script>
+  </body>
+</html>
