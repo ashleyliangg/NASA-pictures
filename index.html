@@ -35,9 +35,8 @@
         <form style="width: 40vw; display: inline-block;">
           <input style="border-radius: 15px;" id="wrapper-date-input" class="form-control" type="date" placeholder="Click to select date">
         </form>
-        
-
       </div>
+      
       <div class="row">
 
         <!-- column for the image -->
@@ -72,6 +71,7 @@
 
     <script type="text/javascript">
       config = {
+        minDate: "1995-06-16",  //date of first NASA pic of day
         maxDate: "today",
         onChange: function(selectedDates, dateStr,) {
           nasaPicForDate(dateStr);
