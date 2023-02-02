@@ -26,14 +26,40 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
   </head>
+  <style>
+    body {
+      background-color:black;
+    }
+
+    h1 {
+      text-align:center; 
+      color:white; 
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      animation-name: bounce-down;
+      animation-duration: 1s;
+      overflow: hidden;
+    }
+
+    @keyframes bounce-down {
+    from {
+      margin-bottom: 100%;
+      width: 100%;
+    }
+  
+    to {
+      margin-bottom: 0%;
+      width: 100%;
+    }
+  }
+  </style>
   <body>
     <!-- Start your project here-->
     <div class="container my-5">
-      <h1 style="text-align:center;">NASA's collection of pictures of the day</h1>
+      <h1>NASA's collection of pictures of the day</h1>
       
       <div id="date-picker" class="datepicker mb-4" style="margin-top: 20px; text-align: center;">
         <form style="width: 40vw; display: inline-block;">
-          <input style="border-radius: 15px;" id="wrapper-date-input" class="form-control" type="date" placeholder="Click to select date">
+          <input style="border-radius: 15px; background-color:#D3D3D3" id="wrapper-date-input" class="form-control" type="date" placeholder="Click to select date">
         </form>
       </div>
 
@@ -49,11 +75,11 @@
 
         <!-- column for the copyright, name, explanation -->
         <div class="col-md-4 mb-4 mb-md-0">
-          <h5 class="font-weight-bold" id="wrapper-title"></h5>
-          <p class="mb-2 text-muted">
+          <h5 class="font-weight-bold" id="wrapper-title" style="color:white"></h5>
+          <p class="mb-2 text-muted" style="color:#D3D3D3">
             <span id="wrapper-copyright"></span>
           </p>
-          <p id="wrapper-explanation"></p>
+          <p id="wrapper-explanation" style="color:#D3D3D3"></p>
         </div>
 
       </div>
