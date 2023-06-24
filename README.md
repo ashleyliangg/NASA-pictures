@@ -4,6 +4,9 @@
 ## Overview
 This NASA APOD (a picture of the day) project allows the user to pick any day between the day that the picture of the day launched (June 16th 1995) and today, and displays the information and media related to that day's picture or video. This project combined two APIs: the NASA picture of the day and flatpickr, a datetime calendar picker. The top portion of the index.html file is the HTML, the bottom portion is the Javascript. 
 
+![screencapture-file-Users-ashleyliang-Documents-Coding-projects-NASA-pictures-index-html-2023-06-23-22_05_38](https://github.com/ashleyliangg/NASA-pictures/assets/102703391/b2f3cb36-e1c1-4471-bf76-643378d771dc)
+
+
 ## How to run locally
 Since it is just an HTML file, just open it with Google Chrome. If it is on Visual Studio Code, click run without debugging.
 
