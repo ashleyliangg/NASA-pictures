@@ -7,6 +7,10 @@ This NASA APOD (a picture of the day) project allows the user to pick any day be
 ![screencapture-file-Users-ashleyliang-Documents-Coding-projects-NASA-pictures-index-html-2023-06-23-22_05_38](https://github.com/ashleyliangg/NASA-pictures/assets/102703391/b2f3cb36-e1c1-4471-bf76-643378d771dc)
 
 
+
+https://github.com/ashleyliangg/NASA-pictures/assets/102703391/47d8f1af-4d41-4c15-aab3-165ee207d363
+
+
 ## How to run locally
 Since it is just an HTML file, just open it with Google Chrome. If it is on Visual Studio Code, click run without debugging.
 
